@@ -11,7 +11,7 @@
         android:layout_height="60dp"
         android:src="@drawable/chevrondown"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp" />
+        android:layout_marginTop="10dp" />
 
     <ImageView
         android:id="@+id/buttonAddTask"
