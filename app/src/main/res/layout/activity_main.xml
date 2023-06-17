@@ -5,25 +5,43 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <EditText
-        android:id="@+id/editTextTask"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Введите задачу"
-        android:ems="10"
-        android:inputType="textPersonName" />
+    <ImageView
+        android:id="@+id/buttonChevron"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:src="@drawable/chevrondown"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp" />
 
-    <Button
+    <ImageView
         android:id="@+id/buttonAddTask"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/editTextTask"
-        android:text="+"/>
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:elevation="2dp"
+        android:src="@drawable/plus"
+        android:scaleType="fitCenter"
+        android:clickable="true"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/buttonChevron"
+        android:visibility="gone"/>
+
+    <ImageView
+        android:id="@+id/buttonRemoveTasks"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_toEndOf="@id/buttonAddTask"
+        android:src="@drawable/trash"
+        android:scaleType="fitCenter"
+        android:clickable="true"
+        android:layout_toRightOf="@+id/buttonAddTask"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/buttonChevron"
+        android:visibility="gone"/>
 
     <ListView
         android:id="@+id/listView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/buttonAddTask"/>
+        android:layout_below="@+id/buttonRemoveTasks"/>
 
 </RelativeLayout>
