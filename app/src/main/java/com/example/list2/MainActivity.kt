@@ -29,6 +29,7 @@ class MainActivity : AppCompatActivity() {
         return deleteMode
     }
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -55,6 +56,9 @@ class MainActivity : AppCompatActivity() {
         val slideDownAnimation = AnimationUtils.loadAnimation(this, R.anim.slide_down)
 
         buttonChevron.setOnClickListener {
+            val slideDownAnimation = AnimationUtils.loadAnimation(this, R.anim.slide_down)
+            val slideUpAnimation = AnimationUtils.loadAnimation(this, R.anim.slide_up)
+
             if (buttonChevron.tag == "down") {
                 buttonChevron.setImageResource(R.drawable.chevronup)
                 buttonChevron.tag = "up"
@@ -64,13 +68,20 @@ class MainActivity : AppCompatActivity() {
 
                 buttonRemoveTasks.visibility = View.VISIBLE
                 buttonRemoveTasks.startAnimation(slideDownAnimation)
+
+                listView.startAnimation(slideDownAnimation)
             } else {
                 buttonChevron.setImageResource(R.drawable.chevrondown)
                 buttonChevron.tag = "down"
+
                 buttonAddTask.visibility = View.GONE
+
                 buttonRemoveTasks.visibility = View.GONE
+
             }
         }
+
+
 
 
 
