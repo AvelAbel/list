@@ -11,6 +11,7 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import android.view.View
 import android.widget.ImageView
+import android.view.animation.AnimationUtils
 
 
 data class Task(var name: String, var count: Int = 0)
@@ -51,12 +52,18 @@ class MainActivity : AppCompatActivity() {
         val buttonChevron: ImageView = findViewById(R.id.buttonChevron)
         buttonChevron.tag = "down"
 
+        val slideDownAnimation = AnimationUtils.loadAnimation(this, R.anim.slide_down)
+
         buttonChevron.setOnClickListener {
             if (buttonChevron.tag == "down") {
                 buttonChevron.setImageResource(R.drawable.chevronup)
                 buttonChevron.tag = "up"
+
                 buttonAddTask.visibility = View.VISIBLE
+                buttonAddTask.startAnimation(slideDownAnimation)
+
                 buttonRemoveTasks.visibility = View.VISIBLE
+                buttonRemoveTasks.startAnimation(slideDownAnimation)
             } else {
                 buttonChevron.setImageResource(R.drawable.chevrondown)
                 buttonChevron.tag = "down"
@@ -64,6 +71,8 @@ class MainActivity : AppCompatActivity() {
                 buttonRemoveTasks.visibility = View.GONE
             }
         }
+
+
 
 
         buttonRemoveTasks.setOnClickListener {
