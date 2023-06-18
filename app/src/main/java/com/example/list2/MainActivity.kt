@@ -49,6 +49,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         val buttonChevron: ImageView = findViewById(R.id.buttonChevron)
+        buttonChevron.tag = "down"
 
         buttonChevron.setOnClickListener {
             if (buttonChevron.tag == "down") {
