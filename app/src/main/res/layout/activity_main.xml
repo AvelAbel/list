@@ -40,6 +40,17 @@
             android:scaleType="fitCenter"
             android:clickable="true"
             android:visibility="gone"/>
+
+        <ImageView
+            android:id="@+id/buttonInfo"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_toEndOf="@id/buttonRemoveTasks"
+            android:src="@drawable/info"
+            android:scaleType="fitCenter"
+            android:clickable="true"
+            android:visibility="gone"
+            android:layout_marginStart="15dp"/>
     </RelativeLayout>
 
 

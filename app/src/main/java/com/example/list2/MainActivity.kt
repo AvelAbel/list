@@ -40,10 +40,14 @@ class MainActivity : AppCompatActivity() {
         val listView: ListView = findViewById(R.id.listView)
         listView.adapter = adapter
 
+
         val buttonAddTask: ImageView = findViewById(R.id.buttonAddTask)
         val buttonRemoveTasks: ImageView = findViewById(R.id.buttonRemoveTasks)
+        val buttonInfo: ImageView = findViewById(R.id.buttonInfo)
+
         buttonAddTask.visibility = View.GONE
         buttonRemoveTasks.visibility = View.GONE
+        buttonInfo.visibility = View.GONE
         buttonRemoveTasks.tag = "normal_mode"
 
         buttonAddTask.setOnClickListener {
@@ -69,6 +73,9 @@ class MainActivity : AppCompatActivity() {
                 buttonRemoveTasks.visibility = View.VISIBLE
                 buttonRemoveTasks.startAnimation(slideDownAnimation)
 
+                buttonInfo.visibility = View.VISIBLE
+                buttonInfo.startAnimation(slideDownAnimation)
+
                 listView.startAnimation(slideDownAnimation)
             } else {
                 buttonChevron.setImageResource(R.drawable.chevrondown)
@@ -78,22 +85,28 @@ class MainActivity : AppCompatActivity() {
 
                 buttonRemoveTasks.visibility = View.GONE
 
+                buttonInfo.visibility = View.GONE
             }
         }
 
-
-
-
+        buttonInfo.setOnClickListener {
+            val builder = AlertDialog.Builder(this)
+            builder.setMessage(R.string.info_message)
+            builder.setNeutralButton(R.string.ok) { _, _ -> }
+            builder.show()
+        }
 
 
         buttonRemoveTasks.setOnClickListener {
             deleteMode = if (deleteMode) {
                 buttonRemoveTasks.setImageResource(R.drawable.trash)
                 buttonAddTask.visibility = View.VISIBLE
+                buttonInfo.visibility = View.VISIBLE
                 false
             } else {
                 buttonRemoveTasks.setImageResource(R.drawable.check)
                 buttonAddTask.visibility = View.GONE
+                buttonInfo.visibility = View.GONE
                 true
             }
             toggleRemoveButtons()

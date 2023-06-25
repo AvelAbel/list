@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Do the last</string>
+    <string name="info_message">Это пример текста, который будет в окошке</string>
+    <string name="ok">OK</string>
 </resources>
