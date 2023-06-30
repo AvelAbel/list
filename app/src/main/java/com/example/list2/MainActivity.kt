@@ -164,18 +164,19 @@ class MainActivity : AppCompatActivity() {
     private fun showAddTaskDialog() {
         val editTextTask = EditText(this)
         AlertDialog.Builder(this)
-            .setTitle("Добавить задачу")
+            .setTitle(getString(R.string.add_task))
             .setView(editTextTask)
-            .setPositiveButton("Добавить") { _, _ ->
+            .setPositiveButton(getString(R.string.add)) { _, _ ->
                 val taskName = editTextTask.text.toString()
                 if (taskName.isNotBlank()) {
                     tasks.add(0, Task(taskName))
                     adapter.notifyDataSetChanged()
                 }
             }
-            .setNegativeButton("Отмена", null)
+            .setNegativeButton(getString(R.string.cancel), null)
             .show()
     }
+
 
     private fun removeTask(task: Task) {
         tasks.remove(task)

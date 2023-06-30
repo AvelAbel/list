@@ -2,4 +2,7 @@
     <string name="app_name">Do the last</string>
     <string name="info_message">1. Наполните список только важными делами вашей жизни.\n\n2. Выполняйте только последнее дело из списка.\n\n3. После выполнения кликайте по нему.</string>
     <string name="ok">OK</string>
+    <string name="add_task">Добавить задачу</string>
+    <string name="add">Добавить</string>
+    <string name="cancel">Отмена</string>
 </resources>

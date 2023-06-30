@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Do the last</string>
+    <string name="info_message">1. Fill the list with only important things in your life.\n\n2. Do only the last thing on the list.\n\n3. Click on it after completion.</string>
+    <string name="ok">OK</string>
+    <string name="add_task">Add task</string>
+    <string name="add">Add</string>
+    <string name="cancel">Cancel</string>
+</resources>
