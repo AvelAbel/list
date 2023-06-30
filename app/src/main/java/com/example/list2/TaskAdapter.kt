@@ -10,13 +10,13 @@ import android.widget.TextView
 import android.annotation.SuppressLint
 import android.widget.ImageView
 
-
 class TaskAdapter(
     context: Context,
     private val resource: Int,
     private val tasks: MutableList<Task>,
     private val incrementCallback: (Task) -> Unit,
     private val removeCallback: (Task) -> Unit,
+    private val editCallback: (Task) -> Unit,
     private val isDeleteMode: () -> Boolean
 ) : ArrayAdapter<Task>(context, resource, tasks) {
 
@@ -29,6 +29,7 @@ class TaskAdapter(
         val textViewName: TextView = view.findViewById(R.id.textViewName)
         val textViewCount: TextView = view.findViewById(R.id.textViewCount)
         val buttonRemove: ImageView = view.findViewById(R.id.buttonRemove)
+        val buttonEdit: ImageView = view.findViewById(R.id.buttonEdit)
 
         textViewName.text = task.name
         textViewCount.text = task.count.toString()
@@ -36,10 +37,14 @@ class TaskAdapter(
         // Привязка обработчиков
         view.setOnClickListener { incrementCallback(task) }
         buttonRemove.setOnClickListener { removeCallback(task) }
+        buttonEdit.setOnClickListener { editCallback(task) }
 
-        // Установка видимости buttonRemove
-        buttonRemove.visibility = if (isDeleteMode()) View.VISIBLE else View.GONE
+        // Установка видимости buttonRemove и buttonEdit
+        val visibility = if (isDeleteMode()) View.VISIBLE else View.GONE
+        buttonRemove.visibility = visibility
+        buttonEdit.visibility = visibility
 
         return view
     }
 }
+

@@ -12,6 +12,7 @@ import com.google.gson.reflect.TypeToken
 import android.view.View
 import android.widget.ImageView
 import android.view.animation.AnimationUtils
+import android.text.Html
 
 
 data class Task(var name: String, var count: Int = 0)
@@ -35,7 +36,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         tasks = loadTasks()
-        adapter = TaskAdapter(this, R.layout.task_item, tasks, this::incrementTask, this::removeTask, this::isDeleteMode)
+        adapter = TaskAdapter(this, R.layout.task_item, tasks, this::incrementTask, this::removeTask, this::showEditTaskDialog, this::isDeleteMode)
 
         val listView: ListView = findViewById(R.id.listView)
         listView.adapter = adapter
@@ -97,9 +98,11 @@ class MainActivity : AppCompatActivity() {
         }
 
 
+
+
         buttonRemoveTasks.setOnClickListener {
             deleteMode = if (deleteMode) {
-                buttonRemoveTasks.setImageResource(R.drawable.trash)
+                buttonRemoveTasks.setImageResource(R.drawable.edit)
                 buttonAddTask.visibility = View.VISIBLE
                 buttonInfo.visibility = View.VISIBLE
                 false
@@ -116,6 +119,39 @@ class MainActivity : AppCompatActivity() {
     override fun onStop() {
         super.onStop()
         saveTasks()
+    }
+
+    private fun showEditTaskDialog(task: Task) {
+        val editTextTask = EditText(this)
+        editTextTask.setText(task.name)
+        AlertDialog.Builder(this)
+            .setTitle("Редактировать задачу")
+            .setView(editTextTask)
+            .setPositiveButton("Сохранить") { _, _ ->
+                val taskName = editTextTask.text.toString()
+                if (taskName.isNotBlank()) {
+                    task.name = taskName
+                    adapter.notifyDataSetChanged()
+                }
+            }
+            .setNegativeButton("Отмена", null)
+            .show()
+    }
+    private fun editTask(task: Task) {
+        val editTextTask = EditText(this)
+        editTextTask.setText(task.name)
+        AlertDialog.Builder(this)
+            .setTitle("Редактировать задачу")
+            .setView(editTextTask)
+            .setPositiveButton("Сохранить") { _, _ ->
+                val newTaskName = editTextTask.text.toString()
+                if (newTaskName.isNotBlank()) {
+                    task.name = newTaskName
+                    adapter.notifyDataSetChanged()
+                }
+            }
+            .setNegativeButton("Отмена", null)
+            .show()
     }
 
     private fun incrementTask(task: Task) {
@@ -152,6 +188,8 @@ class MainActivity : AppCompatActivity() {
             val view = listView.getChildAt(i)
             val buttonRemove: ImageView  = view.findViewById(R.id.buttonRemove)
             buttonRemove.visibility = if (buttonRemove.visibility == View.VISIBLE) View.GONE else View.VISIBLE
+            val buttonEdit: ImageView  = view.findViewById(R.id.buttonEdit)
+            buttonEdit.visibility = if (buttonEdit.visibility == View.VISIBLE) View.GONE else View.VISIBLE
         }
     }
 
